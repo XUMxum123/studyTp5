@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>paginate</title>
+</head>
+
+<body>
+ <div>
+  <ul>
+   {volist name='list' id='team'}
+     <li> {$team[DB_NBATEAM_NAME]}</li>
+   {/volist}
+  </ul>
+ </div>
+{$list->render()}
+</body>
+</html>

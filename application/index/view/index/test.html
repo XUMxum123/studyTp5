@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DocumentRoot</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/index/css/index.css" />
+</head>
+
+<body>
+   <div>test html</div>
+   <div>{$msg}</div>
+   <div>{$name}--{$id}</div>
+   <div>
+     {in name="$list['y']" value="xxx,yyy,zzz"}
+       <span>in value</span>
+     {else/}
+       <span>not in</span>
+     {/in}
+   </div>
+   <div>
+     {if condition="$list['x'] eq 'xxxx'"}
+       {$list['x']}
+     {else/}
+       none
+     {/if}
+   </div>
+   <div>
+     {volist name="list" id="vo"}
+       <span>{$key}</span>
+     {/volist}
+   </div>
+   <div>
+    <select>
+     {for start="0" end="3"}
+      <option>{$i}</option>
+     {/for}
+    </select> 
+   </div>
+   <div>
+   	 {foreach name="list" item="vo"}
+   	   <span>{$key}-{$vo}</span>
+   	 {/foreach}
+   </div>
+   <div>
+     {eq name="list['x']" value="xxx"}
+       <div>{$list['x']}</div>
+     {else/}
+       <div>null</div>
+     {/eq}  
+   </div>
+   <div>
+     {switch name="list['x']"}
+      {case value="xx"}{$list['x']}{/case}
+      {case value="yyy"}{$list['y']}{/case}
+      {case value="zzz"}{$list['z']}{/case}
+      {default/}none
+     {/switch}
+   </div>
+</body>
+</html>
