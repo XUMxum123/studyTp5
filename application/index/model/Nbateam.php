@@ -4,7 +4,7 @@ use think\Model;
 
 
 /* 
- * 在 find 和 select 方法之前可以使用所有的链式操作方法
+ * 在 find和select和paginate方法之前可以使用所有的链式操作方法
  * 默认情况下，find和select方法返回的都是数组
  *  */
 class Nbateam extends Model
@@ -43,9 +43,12 @@ class Nbateam extends Model
 		return $data;
 	}
 	
-	public function _get_team_by_paginate()
+	public function _get_team_by_paginate($list_rows)
 	{
-		return $this->paginate();
+		$where[DB_NBATEAM_WIN] = ['egt',40];
+		$order = [DB_NBATEAM_WIN => 'desc'];
+		$data = $this->where($where)->order($order)->paginate($list_rows);
+		return $data;
 	}
 	
 }

@@ -5,8 +5,12 @@ use \think\Request;
 use \think\Loader;
 //use \think\View;
 use \think\Controller;
+
+use \think\Cache;
+use \think\Cookie;
 use \app\index\model\Nbateam;
 use \app\index\model\News;
+use think\console\command\Clear;
 
 class Index extends Controller
 {
@@ -53,6 +57,20 @@ class Index extends Controller
     	//}   	
     	//var_dump($nbaTeam->getlastsql());
     	//dump($data);
+    	$cacheData = "cache-cache-cache";
+        cache("cacheData",$cacheData);
+        //cache("cacheData",null);
+        //Cache::clear();
+        dump(cache("cacheData"));
+        session('cacheData', $cacheData);
+        //session(null);
+        dump(session('cacheData'));
+        cookie('cacheData', $cacheData);
+        //cookie('cacheData', null);
+        //Cookie::clear();
+        dump(cookie('cacheData'));
+    		
+    		
     	return $this->fetch();
     }
     
@@ -74,10 +92,16 @@ class Index extends Controller
     
     public function paginate()
     {
+    	$currentPage = Request::instance()->param('page');
+    	if(empty($currentPage)){
+    		$currentPage = 1;
+    	}
     	$nbaTeam = new Nbateam();
-    	$list = $nbaTeam->_get_team_by_paginate();
-    	$this->assign('page', 10);
+    	$list_rows = 7; // 每页显示多少
+    	$list = $nbaTeam->_get_team_by_paginate($list_rows);
     	$this->assign('list', $list);
+    	$this->assign('currentPage', $currentPage);
+    	$this->assign('list_rows', $list_rows);
     	return $this->fetch();
     }
     

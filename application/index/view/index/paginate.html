@@ -3,16 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>paginate</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/index/css/paginate.css" />
 </head>
 
 <body>
- <div>
-  <ul>
-   {volist name='list' id='team'}
-     <li> {$team[DB_NBATEAM_NAME]}</li>
-   {/volist}
-  </ul>
+ {notempty name="currentPage"}
+ {else/}
+   {assign name="currentPage" value="1" /}
+ {/notempty}
+ <div id="test">
+   <table>
+     <tr>
+        <th>序列</th>
+        <th>球队名字</th>
+        <th>球队区域</th>
+        <th>球队分属{$currentPage}</th>
+     </tr>
+      {volist name='list' id='team'}
+      <tr>
+        <td>{$key+1+($currentPage-1)*$list_rows}</td>
+        <td>{$team[DB_NBATEAM_NAME]}</td>
+        <td>{$team[DB_NBATEAM_ALLIANCE]}</td>
+        <td>{$team[DB_NBATEAM_PARTITION]}</td>
+      </tr>
+      {/volist}
+   </table>
+   {$list->render()}
  </div>
-{$list->render()}
+
 </body>
 </html>
