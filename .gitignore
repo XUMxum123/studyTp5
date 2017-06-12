@@ -1,4 +1,11 @@
-# eclipse project files
 .buildpath
 .project
+.settings
+
+/.project
+/.buildpath
 /.settings
+
+/.project/
+/.buildpath/
+/.settings/
