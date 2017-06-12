@@ -158,6 +158,7 @@ return [
 
     'log'                    => [
         // 日志记录方式，内置 file socket 支持扩展
+        // 如果要临时关闭日志的话,直接设置 'type' => 'Test' 就可以了, add by xum
         'type'  => 'File',
         // 日志保存目录
         'path'  => LOG_PATH,
@@ -171,6 +172,14 @@ return [
     'trace'                  => [
         // 内置Html Console 支持扩展
         'type' => 'Html',
+/*     	'trace_tabs'	=>		[  // default
+    			'base'=>'基本',
+    			'file'=>'文件',
+    			'info'=>'流程',
+    			'error|notice'=>'错误',
+    			'sql'=>'SQL',
+    			'debug|log'=>'调试'
+    		] */
     ],
 
     // +----------------------------------------------------------------------

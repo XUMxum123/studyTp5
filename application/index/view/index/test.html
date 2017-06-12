@@ -4,11 +4,16 @@
 <meta charset="UTF-8">
 <title>DocumentRoot</title>
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/index/css/index.css" />
+<script type="text/javascript" src="__PUBLIC__/static/index/js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/index/js/index.js"></script>
 </head>
 
 <body>
+   <div><button id="button">click me</button></div>
    <div>test html</div>
-   <div>{$msg}</div>
+   <div>Validate => {$msg}</div>
+   <div>resultValidate => {$resultValidate}</div>
+   <div>datFormValidate => {$datFormValidate}</div>
    <div>{$name}--{$id}</div>
    <div>
      {in name="$list['y']" value="xxx,yyy,zzz"}
@@ -18,11 +23,23 @@
      {/in}
    </div>
    <div>
+     {range name="$list['y']" value="xxx,yyy,zzz" type="in"}
+        <span>range->type->in</span>
+     {/range}
+   </div>
+   <div>
      {if condition="$list['x'] eq 'xxxx'"}
        {$list['x']}
      {else/}
        none
      {/if}
+   </div>
+   <div>
+     {volist name="dimensionList" id="vo1"}
+       {volist name="vo1" id="vo2"}
+         <span>{$key}--{$vo2}</span><br/>
+       {/volist}
+     {/volist}
    </div>
    <div>
      {volist name="list" id="vo"}
