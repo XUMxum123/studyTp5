@@ -137,6 +137,11 @@ class Index extends Controller
     	return $this->fetch();
     }
     
+    public function upload()
+    {
+    	echo ROOT_PATH.'public'.DS.'uploads';
+    }
+    
     public function curd()
     {
     	$nbaTeam = new Nbateam();
