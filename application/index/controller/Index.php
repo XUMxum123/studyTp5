@@ -8,6 +8,8 @@ use \think\Controller;
 
 use \think\Cache;
 use \think\Cookie;
+use \think\Log;
+use \think\Validate;
 use \app\index\model\Nbateam;
 use \app\index\model\News;
 use think\console\command\Clear;
@@ -39,7 +41,7 @@ class Index extends Controller
     
     public function test()
     {
-    	Log::record("开始测试");
+    	//Log::record("开始测试");
      	$data = [
      			'name'  => 'xyzxyz',
      			'age'   => 20,
