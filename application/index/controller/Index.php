@@ -168,6 +168,17 @@ class Index extends Controller
     		return $this->fetch();
     	}
     }
+       
+    public function createCaptcha()
+    {
+    	return $this->fetch();
+    }
+    
+    public function checkCaptcha()
+    {
+    	$captchaValue = input('captchaValue');
+    	return captcha_check($captchaValue);
+    }
     
     public function curd()
     {

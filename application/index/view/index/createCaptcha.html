@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>vertifyCaptcha</title>
+<script type="text/javascript" src="__PUBLIC__/static/index/js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/index/js/index.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/static/index/css/index.css" />
+<script type='text/javascript'>  
+ var captchaSrc = "{:captcha_src()}";
+ var checkCaptcha = "{:url('index/index/checkCaptcha')}";
+</script>
+</head>
+<body>
+  <div id="mainCaptcha">
+     <div>
+      <table style="margin: 0 auto;">
+        <tr>
+          <td id="captcha"><img src="{:captcha_src()}" alt="captcha"/></td>
+          <td><button id="refreshCaptcha">刷新验证码</button></td>
+        </tr>
+      </table>
+     </div>
+     <div>
+                   输入验证码: <input type="text" id="captchaValue" value="" /><br />
+                     <input type="submit" id="submit" value="check" />
+     </div>
+     <div id="msg"></div>
+  </div>
+</body>
+</html>
