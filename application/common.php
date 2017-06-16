@@ -11,6 +11,9 @@
 
 // 应用公共文件
 
+// define upload path
+define("__UPLOAD__", ROOT_PATH.'public'.DS.'uploads');
+
 
 /*  -----  define table  -----*/
 

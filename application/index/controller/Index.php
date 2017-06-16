@@ -8,6 +8,8 @@ use \think\Controller;
 
 use \think\Cache;
 use \think\Cookie;
+use \think\Log;
+use \think\Validate;
 use \app\index\model\Nbateam;
 use \app\index\model\News;
 use think\console\command\Clear;
@@ -39,7 +41,7 @@ class Index extends Controller
     
     public function test()
     {
-    	Log::record("开始测试");
+    	//Log::record("开始测试");
      	$data = [
      			'name'  => 'xyzxyz',
      			'age'   => 20,
@@ -137,9 +139,34 @@ class Index extends Controller
     	return $this->fetch();
     }
     
+    // 这个方法有问题，如果页面刷新，数据会重新提交，应该用ajax异步提交
     public function upload()
-    {
-    	echo ROOT_PATH.'public'.DS.'uploads';
+    {  	
+    	$uploadFileName = "";
+    	if(Request::instance()->isPost()){  		
+    		$files = request()->file("fileName");
+    		foreach($files as $file){
+    			$info = $file->move(__UPLOAD__.DS."index","");
+    			$uploadFileName = $info->getFilename();
+    			if($info){
+                    //echo $info->getExtension()."<br />";
+    				//echo $info->getSaveName()."<br />";
+    				//echo $info->getFilename()."<br />";  				    				
+    				$this->assign("message","upload success");
+    			}else{
+    				//echo $file->getError();
+    				$this->assign("uploadFileName","");
+    				$this->assign("message","upload error, please check it");
+    			}
+    		}
+    		$this->assign("uploadFileName",$uploadFileName);
+    		return $this->fetch();
+    	}else{
+    		//echo "==> ".Request::instance()->isPost();
+    		$this->assign("uploadFileName",$uploadFileName);
+    		$this->assign("message","");
+    		return $this->fetch();
+    	}
     }
     
     public function curd()
