@@ -11,6 +11,7 @@ use \think\Cookie;
 use \think\Log;
 use \think\Validate;
 use \think\Image;
+use \think\helper\Time;
 use \app\index\model\Nbateam;
 use \app\index\model\News;
 use think\console\command\Clear;
@@ -173,6 +174,20 @@ class Index extends Controller
     	}
     }
      
+    public function helperTime()
+    {
+    	list($start, $end) =  Time::today();
+    	//echo $start."  ".$end;
+    	$nbateam = db(DB_NBATEAM_TAB);
+    	$where = [
+    			DB_NBATEAM_ALLIANCE => ['eq','East'],
+    			DB_NBATEAM_ID       => ['like','%'],
+    			DB_NBATEAM_WIN      => [['gt',50],['lt',60],'and']
+    	];
+    	$list = $nbateam->where($where)->select();
+    	dump($list);
+    }
+    
     /* 
      * 必须是\think\Image,不是\Think\Image
      * 前提还有就是GD库必须能用，而且要打开
