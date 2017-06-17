@@ -11,8 +11,9 @@
 
 // 应用公共文件
 
-// define upload path
-define("__UPLOAD__", ROOT_PATH.'public'.DS.'uploads');
+// define constant
+define("__UPLOAD__", "uploads");
+define("__UPLOAD_PATH__", ROOT_PATH."public".DS.__UPLOAD__.DS."index");
 
 
 /*  -----  define table  -----*/

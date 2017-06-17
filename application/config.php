@@ -133,7 +133,10 @@ return [
     // 视图输出字符串内容替换
     'view_replace_str'       => [
     	// add by xum, maybe modify in future
-    	'__PUBLIC__' => DS.'studyTp5'.DS.'public',
+    	// if define there, only use for view,
+    	// if define common.php, can be user for view and anywwhere
+    	'__PUBLIC__' => DS.'studyTp5'.DS.'public'.DS.'static',  
+    	'__NBA_IMAGE_PATH__' => DS."index".DS."images".DS."nbateam".DS,
     ],
 			
     // 默认跳转页面对应的模板文件

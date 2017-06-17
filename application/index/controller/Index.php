@@ -136,6 +136,9 @@ class Index extends Controller
     	$this->assign('list', $list);
     	$this->assign('currentPage', $currentPage);
     	$this->assign('list_rows', $list_rows);
+/*     	echo $_SERVER['SCRIPT_FILENAME']."<br />";
+    	echo APP_PATH."<br />";
+    	echo ROOT_PATH; */
     	return $this->fetch();
     }
     
@@ -146,7 +149,7 @@ class Index extends Controller
     	if(Request::instance()->isPost()){  		
     		$files = request()->file("fileName");
     		foreach($files as $file){
-    			$info = $file->move(__UPLOAD__.DS."index","");
+    			$info = $file->move(__UPLOAD_PATH__, "");
     			$uploadFileName = $info->getFilename();
     			if($info){
                     //echo $info->getExtension()."<br />";
