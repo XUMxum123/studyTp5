@@ -10,6 +10,7 @@ use \think\Cache;
 use \think\Cookie;
 use \think\Log;
 use \think\Validate;
+use \think\Image;
 use \app\index\model\Nbateam;
 use \app\index\model\News;
 use think\console\command\Clear;
@@ -171,7 +172,66 @@ class Index extends Controller
     		return $this->fetch();
     	}
     }
-       
+     
+    /* 
+     * 必须是\think\Image,不是\Think\Image
+     * 前提还有就是GD库必须能用，而且要打开
+     * 路径已经限制在public这个文件夹了
+     *  如果图像的宽度或则高度没有我们需要裁减的大，那么这个图像会拉伸到我们需要的
+     *	如: 原始图像的高度是75像素,我们需要裁减到100像素,那么此时图像会拉伸到100像素,图像变形了
+     *  */
+    public function handleImage()
+    {
+    	//phpinfo();
+    	// $files = request()->file("fileName");
+    	$rootPath = 'static'.DS.'index'.DS.'images'.DS;
+    	$fileName = 'test.jpg';
+    	$image = \think\Image::open($rootPath.$fileName);
+    	$width = $image->width();
+    	$height = $image->height();
+    	$type = $image->type();
+    	$mime = $image->mime();
+    	$size = $image->size();
+        //echo "width  => ".$width."<br />";
+        //echo "height => ".$height."<br />";
+        //echo "type   => ".$type."<br />";
+        //echo "mime   => ".$mime."<br />";
+        //echo "size   => ".$size[0]." | ".$size[1]."<br />"; 
+    	if($width <= 75){
+    		$cropWidth = $width;
+    		$cropX = 0;
+    	}else{
+    		$cropWidth = 75;
+    		$cropX = $width/2 - 37;
+    	}
+    	if($height <= 75){
+    		$cropHeight = $height;
+    		$cropY = 0;
+    	}else{
+    		$cropHeight = 75;
+    		$cropY = $height/2 - 37;
+    	}
+    	// crop image
+    	//$result = $image->crop($cropWidth, $cropHeight, $cropX, $cropY)->save($rootPath."1.jpg");
+    	//dump($result);
+    	
+    	// thumb image
+    	//$result = $image->thumb(200, 200, \think\Image::THUMB_CENTER)->save($rootPath."2.jpg");
+    	//dump($result);
+    	
+    	// flip image
+    	//$result = $image->flip(\think\Image::FLIP_X)->save($rootPath."4.jpg");
+    	//dump($result);
+    	
+    	// rotate image
+    	//$result = $image->rotate(45)->save($rootPath."5.jpg");
+    	//dump($result);
+    	
+    	// water image
+    	//$result = $image->water($rootPath."3.jpg", \think\Image::THUMB_NORTHWEST, 80)->save($rootPath."4.jpg");
+    	//dump($result);
+    }
+    
     public function createCaptcha()
     {
     	return $this->fetch();

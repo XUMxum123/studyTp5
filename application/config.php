@@ -28,8 +28,8 @@ return [
     'auto_bind_module'       => false,
     // 注册的根命名空间
     'root_namespace'         => [],
-    // 扩展函数文件
-    'extra_file_list'        => [THINK_PATH . 'helper' . EXT],
+    // 扩展函数文件   // add define.php ---xum
+    'extra_file_list'        => [THINK_PATH . 'helper' . EXT, APP_PATH . 'define' . EXT],
     // 默认输出类型
     'default_return_type'    => 'html',
     // 默认AJAX 数据返回格式,可选json xml ...
