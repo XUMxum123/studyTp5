@@ -28,6 +28,16 @@ class Index extends Controller
     	phpinfo();
     }
     
+    // 如果开启了'url_convert' => true 这个选项
+    // 那么$this->fetch()会定位到全部为小写的html文件 如:exampletypefunction.html
+    // 也就是说会把   当前模块/当前控制器/view/  下面的html名字全部转化为小写
+    // 如本例测试, view下面html文件名字是exAmpLetYPefUnCTion,转化小写exampletypefunction
+    public function ExampleTypeFunction()
+    {
+    	$this->assign("name","yyy");
+    	return $this->fetch();
+    }
+    
     // 当前模块/默认视图目录/当前控制器（小写）/当前操作（小写）.html
     /*
      * {$varname.aa	??	'xxx'}
