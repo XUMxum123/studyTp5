@@ -33,3 +33,12 @@ define("DB_NEWS_TAB", "news");
 define("DB_NEWS_ID", "id");
 define("DB_NEWS_TITLE", "title");
 define("DB_NEWS_CONTENT", "content");
+
+/*
+ * channel_test_data table
+ */
+define("DB_CHANNELTESTDATA_TAB", "channeltestdata");
+define("DB_CHANNELTESTDATA_CHANNELID", "channelId");
+define("DB_CHANNELTESTDATA_CHANNELNAME", "channelName");
+define("DB_CHANNELTESTDATA_CHANNELCONYENT", "channelContent");
+define("DB_CHANNELTESTDATA_CHANNELNUMBER", "channelNumber");
