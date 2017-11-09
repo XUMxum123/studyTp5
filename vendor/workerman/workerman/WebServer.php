@@ -89,10 +89,10 @@ class WebServer extends Worker
     public function onWorkerStart()
     {
         if (empty($this->serverRoot)) {
-            throw new \Exception('server root not set, please use WebServer::addRoot($domain, $root_path) to set server root path');
+            echo new \Exception('server root not set, please use WebServer::addRoot($domain, $root_path) to set server root path');
+            exit(250);
         }
-        // Init HttpCache.
-        HttpCache::init();
+
         // Init mimeMap.
         $this->initMimeTypeMap();
 
@@ -232,7 +232,7 @@ class WebServer extends Worker
     {
         // Check 304.
         $info = stat($file_path);
-        $modified_time = $info ? date('D, d M Y H:i:s', $info['mtime']) . ' GMT' : '';
+        $modified_time = $info ? date('D, d M Y H:i:s', $info['mtime']) . ' ' . date_default_timezone_get() : '';
         if (!empty($_SERVER['HTTP_IF_MODIFIED_SINCE']) && $info) {
             // Http 304.
             if ($modified_time === $_SERVER['HTTP_IF_MODIFIED_SINCE']) {

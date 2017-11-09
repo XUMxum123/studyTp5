@@ -11,10 +11,10 @@ class User extends Validate
 		    'email' => 'email'
 	];
 	protected $message	=	[
-			'name.require'	=>	'名称必须',
-			'name.max'		=>	'名称最多不能超过25个字符',
-			'age.number'	=>	'年龄必须是数字',
-			'age.between'	=>	'年龄只能在1-100之间',
-			'email'			=>	'邮箱格式错误',
+			'name.require'	=>	'脙没鲁脝卤脴脨毛',
+			'name.max'		=>	'脙没鲁脝脳卯露脿虏禄脛脺鲁卢鹿媒25赂枚脳脰路没',
+			'age.number'	=>	'脛锚脕盲卤脴脨毛脢脟脢媒脳脰',
+			'age.between'	=>	'脛锚脕盲脰禄脛脺脭脷1-100脰庐录盲',
+			'email'			=>	'脫脢脧盲赂帽脢陆麓铆脦贸',
 	];
 }
